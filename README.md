@@ -48,3 +48,15 @@ Parece que podemos romper las reglas si está bien justificado, yo opino estas 3
 ### 7. Finalmente, los FN:
 - 1FN: 1 celda = 1 valor. Afortunadamente no me he inventado que la tabla caótica tuviera varios valores en una sola celda, de ser así, este FN se encarga en transformar eso en lo que sería la tabla caótica que propuse: varias filas redundantes.
 - 2FN y 3FN: curar la dependencia funcional PARCIAL y TRANSITIVA. La solución de las 4 tablas y sus foraign keys.
+
+## Feedback del profesor:
+Estimado/a LAURA GIL ORTIZ,
+Te informamos que tienes nuevas calificaciones disponibles referentes a UF2175_UD 3Actividad 1_Caso práctico correspondiente al grupo ED24-ED1-MF0226 - PROGRAMACIÓN DE BASES DE DATOS RELACIONALES (IFCD0112).
+
+Dicha tarea ha sido evaluada con una nota de: 10
+
+Mensaje: Hola, Laura. Has hecho un planteamiento excelente: has entendido a la perfección la raíz del problema de redundancia, has desglosado con total acierto las dependencias funcionales para aplicar la 1FN, 2FN y 3FN, y el diseño resultante en cuatro tablas relacionales con sus restricciones de integridad y tipos de datos es impecable. Como apunte conceptual, ten en cuenta que mantener el precio_unidad en la línea de pedido no es realmente una desnormalización, sino una necesidad de negocio para congelar el precio histórico de venta, pero la justificación y el razonamiento que has seguido demuestran una comprensión profunda del modelado.
+
+Para cualquier consulta que se te plantee puedes contactar con el departamento académico a través de cualquiera de las vías que tienes a tu disposición.
+
+Recibe un cordial saludo (TUTOR) MARIANO HOMERO GIRALDEZ RUBISTEIN .

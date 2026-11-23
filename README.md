@@ -11,7 +11,7 @@ Objetivos:
 ## Desarrollo:
 ### 1. Detectar el problema
 He hecho una tabla caótica a posta:
-<img src="imagen1.png" width="600">
+<img src="imagen1.png" width="700">
 Para ver cómo sería pasar la factura con todos sus apartados a una versión tabla. Problema detectado: cada producto del pedido ocupa una fila, y los datos del pedido y del cliente se repiten en todas ellas. Esto provoca anomalías: si el cliente cambia de dirección, hay que modificarla en varias filas; si se borra un pedido, se pierden los datos del cliente; y no se puede dar de alta un producto que nadie ha comprado todavía.
 
 ### 2. La solución:
@@ -25,7 +25,7 @@ Según la teoría, para encontrar las columnas problemáticas (parciales) hay qu
 
 También vale mirar la tabla y ver que si se repiten las filas hay que sacarlas y jugar con las claves forágenas, pero aplicarlo es más profesional y certero:
 - Primero identifiqué las keys de la tabla caótica: son num_pedido y cod_producto, lo averigué haciendo el truco de la repetición-pareja (yo lo he llamado así), primero miro columna a columna si hay repeticiones, la que no repita valores es la key, pero si todas se repiten, pruebo parejas, la primera pareja que no repita, es la key compuesta (eso se puede hacer fácilmente con IA si tienes cientos de filas).
-- Segundo: empecé a comparar las dependencias unas con otras realizando la pregunta que planteé antes y así saqué una a una cuál es completa, parcial y transitiva. Para ver cómo quedó: <img src="imagen2.png" width="500">
+- Segundo: empecé a comparar las dependencias unas con otras realizando la pregunta que planteé antes y así saqué una a una cuál es completa, parcial y transitiva. Para ver cómo quedó: <img src="imagen2.png" width="400">
 Tras esto, decidí que repartir la información en cuatro tablas sería lo más óptimo.
 
 ### 4. Tablas:

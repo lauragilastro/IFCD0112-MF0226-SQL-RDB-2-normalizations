@@ -1,0 +1,54 @@
+/*
+  Tabla 1: Clientes
+*/
+CREATE TABLE clientes (
+  cod_cliente VARCHAR(10) PRIMARY KEY,
+  nombre      VARCHAR(100) NOT NULL,
+  direccion   VARCHAR(200) NOT NULL
+);
+
+/*
+  Tabla 2: Productos
+  Igual que con los clientes, pero con los productos.
+*/
+CREATE TABLE productos (
+  cod_producto VARCHAR(10) PRIMARY KEY,
+  descripcion  VARCHAR(100) NOT NULL,
+  precio       DECIMAL(8,2) NOT NULL CHECK (precio >= 0),
+  uds_vendidas INT NOT NULL DEFAULT 0 CHECK (uds_vendidas >= 0)
+);
+
+/*
+  Tabla 3: Pedidos
+  Hay que quitarle mucho peso a la tabla caótica. Yo la dejaría como una
+  tabla de relación pedidos-clientes, pero va a funcionar como la tabla
+  de pedidos a secas.
+*/
+CREATE TABLE pedidos (
+  num_pedido    INT PRIMARY KEY, -- identificador
+  fecha         DATE NOT NULL, -- es el cuándo
+  cod_cliente   VARCHAR(10) NOT NULL, -- es el quién
+  importe_total DECIMAL(10,2) NOT NULL DEFAULT 0 CHECK (importe_total >= 0), -- cuánto en total, no de cada cosa, cada cosa se desarrollará en otra tabla
+  FOREIGN KEY (cod_cliente) REFERENCES clientes(cod_cliente),
+  INDEX idx_fecha (fecha)
+);
+
+/*
+  Tabla 4: Productos ya comprados
+  Esta tabla trata los productos desde una perspectiva ya adquirida, es
+  decir, la relación pedidos-productos.
+  Es necesario crearla porque el foco de los problemas gira en torno a los
+  productos: por culpa de la variedad de productos, todo lo demás se
+  multiplica (el nombre varias veces, la fecha, la cantidad total de
+  dinero...). Es como si todo dependiera de ellos, así que viene bien
+  extraerlos de la tabla de pedidos y dedicarles su espacio en esta tabla.
+*/
+CREATE TABLE pedidos_productos (
+  num_pedido    INT, -- para saber en qué pedido se pidió el producto
+  cod_producto  VARCHAR(10), -- el producto
+  cantidad      INT NOT NULL CHECK (cantidad > 0), -- cuántas veces se pidió, son detalles interesantes del producto
+  precio_unidad DECIMAL(8,2) NOT NULL CHECK (precio_unidad >= 0),
+  PRIMARY KEY (num_pedido, cod_producto),
+  FOREIGN KEY (num_pedido) REFERENCES pedidos(num_pedido),
+  FOREIGN KEY (cod_producto) REFERENCES productos(cod_producto)
+);
